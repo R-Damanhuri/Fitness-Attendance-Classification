@@ -3,8 +3,7 @@
 ## Domain Proyek
 
 GoalZone adalah jaringan klub fitnes di Kanada. GoalZone menawarkan berbagai kelas fitnes dalam dua kapasitas: 25 dan 15. Beberapa kelas selalu dipesan penuh. Kelas yang dipesan penuh seringkali memiliki tingkat kehadiran yang rendah. <br><br>
-GoalZone ingin menambah jumlah ruang yang tersedia untuk kelas. Mereka ingin melakukan hal ini dengan **memprediksi apakah anggota akan menghadiri kelas atau tidak.** Jika mereka dapat memperkirakan anggota tidak akan menghadiri kelas, mereka dapat menyediakan ruang lain.
-
+GoalZone ingin **memprediksi apakah anggota akan menghadiri kelas atau tidak.** Dengan demikian, mereka dapat **memaksimalkan penggunaan kapasitas kelas** dan **menghindari penerimaan kelas untuk anggota yang kemungkinan tidak hadir**.
 ## Business Understanding
 
 ### Problem statement
@@ -44,9 +43,13 @@ Tahapan yang dilakukan: missing value handling, univariate analysis, dan multiva
 Model yang dikembangkan kali ini berupa 6 model machine learning klasik: SVM, Logistic Regression, Decision Tree, Random Forest, XGBoost, dan KNN. Nantinya akan dipilih 1 model dengan performa terbaik berdasarkan metrik evaluasi yang digunakan.
 
 ## Evaluation
-Metrik evaluasi yang digunakan adalah:
-* MSE: Kesalahan kuadrat rata-rata dari prediksi
-* Akurasi:
+Business goal dari proyek adalah:
+* memaksimalkan penggunaan kapasitas kelas:  memaksimalkan prediksi benar keseluruhan (true positive dan true negative)
+* menghindari penerimaan kelas untuk anggota yang kemungkinan tidak hadir: meminimalkan kesalahan prediksi benar (false positive)
 
-Hasil eksperimen menunjukkan bahwa model dengan performa terbaik adalah SVM dengan MSE Training 0.214167, MSE Testing 0.233333, Accuracy Training 0.785833, dan Accuracy Testing 0.766667. <br>
+Sehingga metrik evaluasi yang digunakan adalah:
+* Accuracy: berapa persen prediksi yang benar bahwa anggota menghadiri dan tidak menghadiri kelas dari seluruh anggota.
+* Precision: berapa persen anggota yang benar hadir dari keseluruhan anggota yang diprediksi hadir
+
+Hasil eksperimen menunjukkan bahwa model dengan performa terbaik adalah SVM dengan Train Accuracy 0.785833 Test Accuracy 0.766667, Train Precision 0.735, dan Test Precision 0.823529. <br>
 Atribut paling berkorelasi dengan kehadiran anggota pada kelas fitnes adalah months_as_member atau berapa bulan anggota bergabung, berupa korelasi positif (0.49)
